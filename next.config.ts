@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
 
+const exporting = process.env.SAWHORSE_EXPORT === "1";
+
 const nextConfig: NextConfig = {
-  /* config options here */
+  ...(exporting ? { output: "export" as const } : {}),
 };
 
 export default nextConfig;

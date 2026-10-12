@@ -6,6 +6,7 @@
     "dev": "concurrently -k -n web,model -c blue,magenta \"next dev --turbopack -p 43123\" \".venv/bin/python -m uvicorn engine.server:app --host 127.0.0.1 --port 43124\"",
     "engine": ".venv/bin/python -m uvicorn engine.server:app --host 127.0.0.1 --port 43124",
     "build": "next build --turbopack",
+    "demo:export": "bash scripts/export-demo.sh",
     "start": "next start -p 43123",
     "lint": "eslint",
     "test": ".venv/bin/pytest"

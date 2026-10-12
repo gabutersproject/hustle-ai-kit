@@ -1,6 +1,12 @@
 export class DeskError extends Error {}
 
+const browserRuntime = process.env.NEXT_PUBLIC_SAWHORSE_RUNTIME === "browser";
+
 export async function api<T>(path: string, init?: RequestInit): Promise<T> {
+  if (browserRuntime) {
+    const { browserApi } = await import("@/lib/browser-desk");
+    return browserApi<T>(path, init);
+  }
   let response: Response;
   try {
     response = await fetch(`/api/engine/${path}`, {

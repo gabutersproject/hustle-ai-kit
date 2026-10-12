@@ -1,3 +1,5 @@
+*This is a submission for the [Hacktoberfest Open-Source AI Challenge Week 2: Side Hustle](https://dev.to/challenges/hacktoberfest-week2-2026-10-12)*
+
 # Sawhorse: a quoting desk that isn't allowed to invent a price
 
 # What I Built
@@ -14,19 +16,15 @@ The sample shop is Mara Ellison Studio in Hudson, New York. Her card is $85 an h
 
 ## Demo
 
-Sawhorse runs on the shop machine. A public hosted demo would send the client note off that machine, which is the thing the product refuses to do.
+The sample desk is here: https://gabuters-sawhorse.surge.sh
 
-The walkthrough is Priya's note, from paste to priced letter: the model read, the ticket you can correct, then white oak marked as the one to send because walnut is over the range. Upload that recording with this post.
+Open Priya's note. The weights download into your browser, about 1.1 GB, once, and then the model reads the note on that machine. White oak is the one to send, because walnut is over the range, and the letter says Thanksgiving is inside the lead time. You can change any field before a dollar is calculated. Nothing in the note is uploaded.
 
-On a machine with the weights downloaded, `pnpm dev` serves the desk at `http://127.0.0.1:43123`. A short note usually reads in under a minute on a 4-core CPU with no GPU. You can change any field on the ticket before a dollar is calculated. The rate card and the glossary are editable. Saved tickets stay in a JSON file next to the app.
+A shop install is the same desk with the weights already on the laptop. `pnpm dev` serves it at `http://127.0.0.1:43123`. A short note usually reads in under a minute on a 4-core CPU with no GPU. The rate card and the glossary are editable. Saved tickets stay in a JSON file next to the app.
 
 ## Code
 
-This project does not have a public GitHub repository yet. After you create one, embed it here:
-
-```liquid
-{% github YOUR_NAME/sawhorse %}
-```
+{% github gabutersproject/hustle-ai-kit %}
 
 The split that matters:
 
@@ -59,7 +57,7 @@ The open-weight model is [Qwen2.5-1.5B-Instruct](https://huggingface.co/Qwen/Qwe
 
 A 1.5 billion parameter model still copies the shape of its examples. After the read, `apply_note_guards` fixes two high-confidence misses: if the word "leaf" is in the note, the ticket includes a leaf; if the note says the room is "9 feet by 11" and the model copies 9 and 11 into the furniture dimensions, those values are dropped, because that was the room. The maker still sees every field and can change it before pricing.
 
-The desk is a Next.js app. A FastAPI process on localhost holds the weights. The browser talks only to Next, and Next proxies to that process, so a read never leaves the machine. The glossary is the niche list a shop will actually edit: towns, finish phrases, species nicknames. The next note uses it. The same weights can take a LoRA later, trained on quotes the shop really sent.
+The desk is a Next.js app. A FastAPI process on localhost holds the weights. The browser talks only to Next, and Next proxies to that process, so a read never leaves the machine. The hosted sample keeps that split, only the process is the browser: llama.cpp runs there, and the rate card is the same Python. The glossary is the niche list a shop will actually edit: towns, finish phrases, species nicknames. The next note uses it. The same weights can take a LoRA later, trained on quotes the shop really sent.
 
 ## Why Does Open Innovation Matter?
 
@@ -70,17 +68,3 @@ What breaks it is a wrong number, or a leaked one. A general chat model asked to
 The open weight file is what makes the stricter design possible. llama.cpp will bind the reply to a grammar with no price field. The prompt is not given the rates, so there is nothing for the model to repeat. The weights are Apache-2.0, so the desk can be sold without renting the brain. They are small enough that a shop laptop with no GPU can run them. If the app disappeared, the rate card and the saved tickets would still be JSON files, and the model would still be a file beside them. Nobody gets to reprice the inference out from under a $4,000 job.
 
 The glossary is not a fine-tune. It is the adjustment a one-person shop will keep. A closed API does not hand you the weights to train later, and it does not hand you a grammar that forbids a price.
-
-## My Agent Session
-
-I built Sawhorse in a Cursor cloud agent session:
-
-https://cursor.com/agents/bc-020ab737-7d81-408c-8afc-5fa949413689
-
-After you save that transcript with DevRelay and make the session public, replace the link with:
-
-```liquid
-{% agent_session YOUR_SESSION_SLUG %}
-```
-
-A private session only embeds for the owner. Judges need the public one.

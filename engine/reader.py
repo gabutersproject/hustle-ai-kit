@@ -220,20 +220,15 @@ def _clean(data: dict, inquiry: str) -> Reading:
     return apply_note_guards(reading.model_copy(update=updates), inquiry)
 
 
-def read_note(book: Pricebook, inquiry: str, today: date | None = None) -> ReadResult:
+def _clip_inquiry(inquiry: str) -> str:
     text = inquiry.strip()
     if len(text) < 8:
         raise ValueError("Paste a little more of the note. A name and a sentence is enough.")
-    text = text[:4000]
-    llm = _state["llm"]
-    if llm is None:
-        if _state["loading"]:
-            raise RuntimeError("The model is still loading on this machine.")
-        detail = _state["error"] or "The model is not loaded."
-        raise RuntimeError(str(detail))
+    return text[:4000]
 
-    today = today or date.today()
-    messages = [
+
+def _messages(book: Pricebook, text: str, today: date) -> list[dict[str, str]]:
+    return [
         {
             "role": "system",
             "content": (
@@ -244,6 +239,54 @@ def read_note(book: Pricebook, inquiry: str, today: date | None = None) -> ReadR
         },
         {"role": "user", "content": _prompt(book, text, today)},
     ]
+
+
+def prepare_read(book: Pricebook, inquiry: str, today: date | None = None) -> dict:
+    """Prompt and grammar for a read. The caller runs the model."""
+    text = _clip_inquiry(inquiry)
+    today = today or date.today()
+    return {"messages": _messages(book, text, today), "schema": _schema(book)}
+
+
+def finish_read(
+    book: Pricebook,
+    inquiry: str,
+    content: str,
+    seconds: float,
+    completion_tokens: int = 0,
+) -> ReadResult:
+    """Turn model text into a ticket. Shared by the local server and the browser."""
+    text = _clip_inquiry(inquiry)
+    try:
+        payload = json.loads(content)
+    except json.JSONDecodeError as exc:
+        raise RuntimeError(
+            "The model didn't finish a ticket. Try the note again, or fill the ticket yourself."
+        ) from exc
+    if not isinstance(payload, dict):
+        raise RuntimeError(
+            "The model didn't finish a ticket. Try the note again, or fill the ticket yourself."
+        )
+    rate = round(completion_tokens / seconds, 1) if seconds and completion_tokens else None
+    return ReadResult(
+        reading=_clean(payload, text),
+        seconds=round(seconds, 2),
+        tokens_per_second=rate,
+        model=MODEL_META,
+    )
+
+
+def read_note(book: Pricebook, inquiry: str, today: date | None = None) -> ReadResult:
+    text = _clip_inquiry(inquiry)
+    llm = _state["llm"]
+    if llm is None:
+        if _state["loading"]:
+            raise RuntimeError("The model is still loading on this machine.")
+        detail = _state["error"] or "The model is not loaded."
+        raise RuntimeError(str(detail))
+
+    today = today or date.today()
+    messages = _messages(book, text, today)
     started = time.perf_counter()
     with _lock:
         response = llm.create_chat_completion(  # type: ignore[attr-defined]
@@ -254,18 +297,6 @@ def read_note(book: Pricebook, inquiry: str, today: date | None = None) -> ReadR
         )
     seconds = time.perf_counter() - started
     content = response["choices"][0]["message"]["content"] or ""
-    try:
-        payload = json.loads(content)
-    except json.JSONDecodeError as exc:
-        raise RuntimeError(
-            "The model didn't finish a ticket. Try the note again, or fill the ticket yourself."
-        ) from exc
     usage = response.get("usage") or {}
     completion = usage.get("completion_tokens") or 0
-    rate = round(completion / seconds, 1) if seconds and completion else None
-    return ReadResult(
-        reading=_clean(payload, text),
-        seconds=round(seconds, 2),
-        tokens_per_second=rate,
-        model=MODEL_META,
-    )
+    return finish_read(book, text, content, seconds, int(completion or 0))
