@@ -1,0 +1,271 @@
+{
+  "shop": {
+    "name": "Mara Ellison Studio",
+    "maker": "Mara Ellison",
+    "city": "Hudson, New York",
+    "email": "mara@ellison.studio",
+    "phone": "(518) 555-0148",
+    "hourly_cents": 8500,
+    "deposit_percent": 50,
+    "lead_weeks_min": 10,
+    "lead_weeks_max": 14,
+    "design_hours": 2,
+    "design_credited": true,
+    "revision_rounds": 1,
+    "quote_valid_days": 21,
+    "default_species": "white_oak",
+    "default_finish": "hardwax_oil"
+  },
+  "species": [
+    {
+      "id": "white_oak",
+      "label": "White oak",
+      "cents_per_bf": 1400,
+      "note": "Straight grain. The everyday hardwood. Takes a matte oil cleanly."
+    },
+    {
+      "id": "walnut",
+      "label": "Black walnut",
+      "cents_per_bf": 3200,
+      "note": "Dark heartwood. The upgrade when the budget can move."
+    },
+    {
+      "id": "ash",
+      "label": "Ash",
+      "cents_per_bf": 1100,
+      "note": "Pale and tough. A little more casual than oak."
+    },
+    {
+      "id": "cherry",
+      "label": "Cherry",
+      "cents_per_bf": 2200,
+      "note": "Deepens to red over the first year."
+    },
+    {
+      "id": "maple",
+      "label": "Hard maple",
+      "cents_per_bf": 1500,
+      "note": "Tight grain. Good for a desk that will see pens and cups."
+    }
+  ],
+  "finishes": [
+    {
+      "id": "hardwax_oil",
+      "label": "Hardwax oil, matte",
+      "extra_hours": 0,
+      "supply_cents": 6500,
+      "sheen": "matte"
+    },
+    {
+      "id": "rubio",
+      "label": "Rubio Monocoat",
+      "extra_hours": 1,
+      "supply_cents": 9000,
+      "sheen": "matte"
+    },
+    {
+      "id": "osmo",
+      "label": "Osmo Polyx, satin",
+      "extra_hours": 1,
+      "supply_cents": 7500,
+      "sheen": "satin"
+    },
+    {
+      "id": "lacquer",
+      "label": "Waterborne lacquer",
+      "extra_hours": 2,
+      "supply_cents": 8000,
+      "sheen": "gloss"
+    }
+  ],
+  "delivery": [
+    {
+      "id": "pickup",
+      "label": "Shop pickup in Hudson",
+      "cents": 0
+    },
+    {
+      "id": "hudson",
+      "label": "Hudson, within about 15 minutes",
+      "cents": 8000
+    },
+    {
+      "id": "mid_hudson",
+      "label": "Mid-Hudson, about a 40 minute drive",
+      "cents": 16500
+    },
+    {
+      "id": "nyc",
+      "label": "New York City",
+      "cents": 34000
+    }
+  ],
+  "addons": [
+    {
+      "id": "waterfall",
+      "label": "Waterfall ends",
+      "hours": 8,
+      "extra_bf": 10,
+      "hardware_cents": 0,
+      "pieces": ["dining_table", "desk", "coffee_table"]
+    },
+    {
+      "id": "cable_grommet",
+      "label": "Cable grommet",
+      "hours": 1,
+      "extra_bf": 0,
+      "hardware_cents": 4500,
+      "pieces": ["desk"]
+    }
+  ],
+  "pieces": [
+    {
+      "id": "dining_table",
+      "label": "Dining table",
+      "labor_hours": 32,
+      "thickness_in": 2,
+      "waste": 1.35,
+      "lumber_bf": 0,
+      "reference_width_in": 0,
+      "default_width_in": 72,
+      "default_depth_in": 38,
+      "leaf_hours": 6,
+      "leaf_width_in": 18,
+      "leaf_hardware_cents": 8000,
+      "supports_leaf": true,
+      "supports_seats": true,
+      "supports_base": true,
+      "scale_labor_with_width": false,
+      "seat_widths": {"4": 54, "6": 72, "8": 84, "10": 96},
+      "bases": [
+        {"id": "trestle", "label": "Trestle base", "extra_hours": 0},
+        {"id": "four_leg", "label": "Four-leg base", "extra_hours": -3},
+        {"id": "pedestal", "label": "Pedestal base", "extra_hours": 4}
+      ],
+      "default_base": "trestle"
+    },
+    {
+      "id": "bench",
+      "label": "Bench",
+      "labor_hours": 8,
+      "thickness_in": 1.5,
+      "waste": 1.4,
+      "lumber_bf": 0,
+      "reference_width_in": 0,
+      "default_width_in": 60,
+      "default_depth_in": 14,
+      "leaf_hours": 0,
+      "leaf_width_in": 0,
+      "leaf_hardware_cents": 0,
+      "supports_leaf": false,
+      "supports_seats": false,
+      "supports_base": false,
+      "scale_labor_with_width": false,
+      "seat_widths": {},
+      "bases": [],
+      "default_base": ""
+    },
+    {
+      "id": "coffee_table",
+      "label": "Coffee table",
+      "labor_hours": 14,
+      "thickness_in": 2,
+      "waste": 1.35,
+      "lumber_bf": 0,
+      "reference_width_in": 0,
+      "default_width_in": 46,
+      "default_depth_in": 22,
+      "leaf_hours": 0,
+      "leaf_width_in": 0,
+      "leaf_hardware_cents": 0,
+      "supports_leaf": false,
+      "supports_seats": false,
+      "supports_base": false,
+      "scale_labor_with_width": false,
+      "seat_widths": {},
+      "bases": [],
+      "default_base": ""
+    },
+    {
+      "id": "desk",
+      "label": "Desk",
+      "labor_hours": 16,
+      "thickness_in": 1.75,
+      "waste": 1.35,
+      "lumber_bf": 0,
+      "reference_width_in": 0,
+      "default_width_in": 56,
+      "default_depth_in": 26,
+      "leaf_hours": 0,
+      "leaf_width_in": 0,
+      "leaf_hardware_cents": 0,
+      "supports_leaf": false,
+      "supports_seats": false,
+      "supports_base": false,
+      "scale_labor_with_width": false,
+      "seat_widths": {},
+      "bases": [],
+      "default_base": ""
+    },
+    {
+      "id": "bookshelf",
+      "label": "Bookshelf",
+      "labor_hours": 10,
+      "thickness_in": 0,
+      "waste": 1,
+      "lumber_bf": 16,
+      "reference_width_in": 36,
+      "default_width_in": 36,
+      "default_depth_in": 12,
+      "leaf_hours": 0,
+      "leaf_width_in": 0,
+      "leaf_hardware_cents": 0,
+      "supports_leaf": false,
+      "supports_seats": false,
+      "supports_base": false,
+      "scale_labor_with_width": true,
+      "seat_widths": {},
+      "bases": [],
+      "default_base": ""
+    },
+    {
+      "id": "sideboard",
+      "label": "Sideboard",
+      "labor_hours": 26,
+      "thickness_in": 0,
+      "waste": 1,
+      "lumber_bf": 34,
+      "reference_width_in": 60,
+      "default_width_in": 60,
+      "default_depth_in": 18,
+      "leaf_hours": 0,
+      "leaf_width_in": 0,
+      "leaf_hardware_cents": 0,
+      "supports_leaf": false,
+      "supports_seats": false,
+      "supports_base": false,
+      "scale_labor_with_width": false,
+      "seat_widths": {},
+      "bases": [],
+      "default_base": ""
+    }
+  ],
+  "glossary": [
+    {"id": "g1", "phrase": "catskill", "kind": "delivery", "value": "mid_hudson", "note": "About 40 minutes south of the shop"},
+    {"id": "g2", "phrase": "rhinebeck", "kind": "delivery", "value": "mid_hudson", "note": ""},
+    {"id": "g3", "phrase": "red hook", "kind": "delivery", "value": "mid_hudson", "note": ""},
+    {"id": "g4", "phrase": "tivoli", "kind": "delivery", "value": "mid_hudson", "note": ""},
+    {"id": "g5", "phrase": "hudson", "kind": "delivery", "value": "hudson", "note": "The shop's town"},
+    {"id": "g6", "phrase": "warren street", "kind": "delivery", "value": "hudson", "note": "Warren Street is in Hudson"},
+    {"id": "g7", "phrase": "brooklyn", "kind": "delivery", "value": "nyc", "note": ""},
+    {"id": "g8", "phrase": "manhattan", "kind": "delivery", "value": "nyc", "note": ""},
+    {"id": "g9", "phrase": "the city", "kind": "delivery", "value": "nyc", "note": "Around here, the city means New York"},
+    {"id": "g10", "phrase": "hates glossy", "kind": "finish", "value": "hardwax_oil", "note": "A dull surface, not lacquer"},
+    {"id": "g11", "phrase": "not glossy", "kind": "finish", "value": "hardwax_oil", "note": ""},
+    {"id": "g12", "phrase": "matte", "kind": "finish", "value": "hardwax_oil", "note": ""},
+    {"id": "g13", "phrase": "rubio", "kind": "finish", "value": "rubio", "note": ""},
+    {"id": "g14", "phrase": "hard maple", "kind": "species", "value": "maple", "note": ""},
+    {"id": "g15", "phrase": "black walnut", "kind": "species", "value": "walnut", "note": ""},
+    {"id": "g16", "phrase": "white oak", "kind": "species", "value": "white_oak", "note": ""}
+  ]
+}

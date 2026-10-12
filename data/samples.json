@@ -1,0 +1,20 @@
+[
+  {
+    "id": "priya",
+    "label": "Priya in Catskill",
+    "blurb": "Walnut if it fits, otherwise white oak, before Thanksgiving.",
+    "inquiry": "Hi, I'm Priya. We just bought a place in Catskill and the dining room is awkward, about 9 feet by 11. We want a table that seats 6, maybe 8 with a leaf. Walnut if it's not crazy, otherwise white oak. My partner hates glossy finishes. We'd need it before Thanksgiving if that's even possible. Budget is around 4-5k. Can you deliver? We're about 40 minutes from Hudson."
+  },
+  {
+    "id": "jonah",
+    "label": "Jonah's desk",
+    "blurb": "Hard maple, a cable hole, pickup on Warren Street.",
+    "inquiry": "Hi Mara — Jonah here, the writer on Warren Street. The apartment is tiny. I need a desk that can hold a laptop and a stack of paper, hard maple if you have it, and a hole so the charger isn't hanging off the back. I can pick up. No real deadline, maybe before the new year if that's easy. Hoping to stay around two thousand."
+  },
+  {
+    "id": "andre",
+    "label": "Andre's bookshelf",
+    "blurb": "White oak, four feet, Brooklyn, and a tight number.",
+    "inquiry": "Hello, we live in Brooklyn and we'd like a low bookshelf, white oak, nothing fancy, about four feet wide. We can come to you or you can bring it to the city, whatever is easier. Budget is loose. Under fifteen hundred would be a surprise — we know that's tight. I'm Andre."
+  }
+]
