@@ -1,6 +1,8 @@
 # Sawhorse: a quoting desk that isn't allowed to invent a price
 
-# What I Built
+This is a submission for the Hacktoberfest Open-Source AI Challenge Week 1: Touch Grass.
+
+## What I Built
 
 Sawhorse is a quoting desk for a one-person custom furniture shop.
 
@@ -22,11 +24,9 @@ On a machine with the weights downloaded, `pnpm dev` serves the desk at `http://
 
 ## Code
 
-This project does not have a public GitHub repository yet. After you create one, embed it here:
+{% github gabutersproject/hustle-ai-kit %}
 
-```liquid
-{% github YOUR_NAME/sawhorse %}
-```
+The public repository is [gabutersproject/hustle-ai-kit](https://github.com/gabutersproject/hustle-ai-kit).
 
 The split that matters:
 
@@ -76,11 +76,3 @@ The glossary is not a fine-tune. It is the adjustment a one-person shop will kee
 I built Sawhorse in a Cursor cloud agent session:
 
 https://cursor.com/agents/bc-020ab737-7d81-408c-8afc-5fa949413689
-
-After you save that transcript with DevRelay and make the session public, replace the link with:
-
-```liquid
-{% agent_session YOUR_SESSION_SLUG %}
-```
-
-A private session only embeds for the owner. Judges need the public one.
