@@ -230,7 +230,11 @@ export function QuoteDesk() {
             disabled={!modelReady || phase === "reading" || inquiry.trim().length < 8}
             onClick={readNote}
           >
-            {phase === "reading" ? "Reading on this machine…" : "Read the note"}
+            {phase === "reading"
+              ? process.env.NEXT_PUBLIC_SAWHORSE_RUNTIME === "browser"
+                ? "Reading in this browser…"
+                : "Reading on this machine…"
+              : "Read the note"}
           </Button>
           <Button
             type="button"
@@ -251,8 +255,9 @@ export function QuoteDesk() {
         </div>
         {phase === "reading" ? (
           <p className="text-sm text-muted-foreground" aria-live="polite">
-            Qwen2.5 1.5B is reading the note in this process. A short note is usually under a
-            minute. Nothing is uploaded.
+            {process.env.NEXT_PUBLIC_SAWHORSE_RUNTIME === "browser"
+              ? "Qwen2.5 1.5B is reading the note in this browser. A short note is usually under a minute. Nothing is uploaded."
+              : "Qwen2.5 1.5B is reading the note in this process. A short note is usually under a minute. Nothing is uploaded."}
           </p>
         ) : null}
         {!modelReady ? (
@@ -503,7 +508,7 @@ export function QuoteDesk() {
             </Button>
             {savedId ? (
               <Link
-                href={`/quotes/${savedId}`}
+                href={`/quotes?id=${savedId}`}
                 className={cn(buttonVariants({ variant: "outline" }), "h-10 px-4")}
               >
                 Open saved ticket

@@ -163,6 +163,7 @@ export type Health = {
   model_loaded: boolean;
   model_loading: boolean;
   model_error: string | null;
+  model_progress?: number | null;
   model: ModelMeta;
 };
 

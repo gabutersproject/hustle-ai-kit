@@ -22,6 +22,8 @@ export function useShop() {
   return value;
 }
 
+const browserRuntime = process.env.NEXT_PUBLIC_SAWHORSE_RUNTIME === "browser";
+
 const NAV = [
   { href: "/", label: "New quote" },
   { href: "/quotes", label: "Tickets" },
@@ -88,9 +90,11 @@ export function Shell({ children }: { children: ReactNode }) {
   const modelLabel = !health
     ? "Connecting"
     : health.model_loaded
-      ? `${health.model.name.split("-")[0]} ${health.model.parameters.replace(" billion", "B")} · on this machine`
+      ? `${health.model.name.split("-")[0]} ${health.model.parameters.replace(" billion", "B")} · ${browserRuntime ? "in this browser" : "on this machine"}`
       : health.model_loading
-        ? "Loading the model"
+        ? health.model_progress != null && health.model_progress < 100
+          ? `Downloading the weights · ${health.model_progress}%`
+          : "Loading the model"
         : "Model unavailable";
 
   return (
@@ -136,7 +140,9 @@ export function Shell({ children }: { children: ReactNode }) {
             <p className="mx-auto max-w-6xl px-4 pb-3 text-sm text-muted-foreground">
               {health.model_error
                 ? health.model_error
-                : "Qwen2.5 is loading on this machine. You can fill a ticket by hand. Reading a note waits until the model is in memory."}
+                : browserRuntime
+                  ? "Qwen2.5 is downloading into this browser, about 1.1 GB, then it stays here. You can fill a ticket by hand while that finishes. The note is not uploaded."
+                  : "Qwen2.5 is loading on this machine. You can fill a ticket by hand. Reading a note waits until the model is in memory."}
             </p>
           ) : null}
           {loadError && !book ? (

@@ -42,6 +42,7 @@ next-env.d.ts
 
 # local quoting engine
 .venv/
+/public/desk
 models/*.gguf
 __pycache__/
 .pytest_cache/
