@@ -1,4 +1,11 @@
+# Hacktoberfest Open-Source AI Challenge — Week 2
 *This is a submission for the [Hacktoberfest Open-Source AI Challenge Week 2: Side Hustle](https://dev.to/challenges/hacktoberfest-week2-2026-10-12)*
+
+- **Project:** Side Hustle
+- **Tagline:** Build Something with Open-Source AI at Its Core.
+- **Author:** [Amier Gabuters](https://github.com/gabutersproject) (`gabutersproject`)
+- **Challenge window:** 12–18 October 2026
+- **Tags for the DEV post:** `#devchallenge` `#hf26challenge`
 
 # Sawhorse: a quoting desk that isn't allowed to invent a price
 
@@ -24,7 +31,7 @@ A shop install is the same desk with the weights already on the laptop. `pnpm de
 
 ## Code
 
-{% github gabutersproject/hustle-ai-kit %}
+**GitHub:** https://github.com/gabutersproject/hustle-ai-kit
 
 The split that matters:
 
