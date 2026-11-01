@@ -32,3 +32,5 @@ Open [http://127.0.0.1:43123](http://127.0.0.1:43123). The first start loads abo
 The model file is not in git. `scripts/download_model.sh` fetches `Qwen/Qwen2.5-1.5B-Instruct-GGUF` (`qwen2.5-1.5b-instruct-q5_k_m.gguf`).
 
 Quotes and edits to the rate card stay in `data/` on this machine. Restore Mara's sample from the rate card page.
+
+More detail lives in [SUBMISSION.md](./SUBMISSION.md)
